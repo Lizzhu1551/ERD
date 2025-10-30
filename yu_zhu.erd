@@ -1,0 +1,43 @@
+erdiagram UniversityModel
+notation=crowsfoot
+
+entity CUSTOMER {
+    CUS_Id: INTEGER key
+    CUS_NAME: VARCHAR(100)
+    CUS_PHONE_NUM: VARCHAR(100)
+
+}
+
+entity INVOICE {
+    INVOICE_ID: INTEGER key
+    CUSTOMER_ID: INTEGER
+    INVOICE_DATE: DATE
+}
+
+entity LINE {
+    LINE_id: INTEGER key
+    P_CODE: VARCHAR(100)
+    LINE_PRICE: VARCHAR(10)
+}
+
+entity PRODUCT {
+    P_CODE: VARCHAR(10) key
+    P_CATEGORY: VARCHAR(100)
+    P_QOH: VARCHAR(100)
+    P_PRICE: VARCHAR(10)
+}
+
+
+relationship CustomerInvoice {
+    CUSTOMER[1 | "CUS_Id"] -> INVOICE[1 | "CUS_Id"]
+}
+
+
+
+relationship InvoiceLine {
+    INVOICE[1| "INVOICE_ID"] -> LINE[1 | "INVOICE_ID"]
+}
+
+relationship LineProduct {
+    LINE[1 | "P_CODE"] -> PRODUCT[1 | "P_CODE"]
+}
